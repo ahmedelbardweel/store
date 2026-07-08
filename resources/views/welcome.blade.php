@@ -1079,7 +1079,7 @@
                     border-radius: 3.40282e38px
                 }
 
-                .rounded-md {
+                .rounded-[10px] {
                     border-radius: var(--radius-md)
                 }
 
@@ -2402,3 +2402,4 @@
 </body>
 
 </html>
+

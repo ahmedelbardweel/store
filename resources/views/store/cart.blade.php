@@ -6,13 +6,13 @@
     <h1 class="text-2xl font-black tracking-tight text-gray-900 dark:text-white mb-6">Your Shopping Cart</h1>
 
     @if (empty($items))
-        <div class="text-center py-16 bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-2xl custom-shadow">
+        <div class="text-center py-16 bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] custom-shadow">
             <svg class="w-12 h-12 text-gray-300 dark:text-zinc-700 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
             </svg>
             <h3 class="mt-4 text-sm font-semibold text-gray-900 dark:text-white">Your cart is empty</h3>
             <p class="mt-1 text-xs text-gray-400">Add digital games, apps, or music packs to your cart to checkout.</p>
-            <a href="{{ route('home') }}" class="mt-6 inline-block text-xs bg-[#f53003] text-white px-4 py-2 rounded-md font-semibold hover:bg-red-700 transition-colors">
+            <a href="{{ route('home') }}" class="mt-6 inline-block text-xs bg-[#f53003] text-white px-4 py-2 rounded-[10px] font-semibold hover:bg-red-700 transition-colors">
                 Return to Store
             </a>
         </div>
@@ -23,8 +23,8 @@
             <div class="lg:col-span-2 space-y-3">
                 @foreach ($items as $item)
                     @php $p = $item['product']; @endphp
-                    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-3 sm:p-4 custom-shadow flex items-center gap-3 sm:gap-4">
-                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800 shrink-0">
+                    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-3 sm:p-4 custom-shadow flex items-center gap-3 sm:gap-4">
+                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-[12px] border border-gray-100 dark:border-zinc-800 shrink-0">
                         
                         <div class="flex-1 min-w-0">
                             <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400">{{ $p->category->name }}</span>
@@ -55,7 +55,7 @@
             <div class="space-y-6">
                 
                 <!-- Pricing Card -->
-                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 custom-shadow space-y-6">
+                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-6 custom-shadow space-y-6">
                     <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">Order Summary</h2>
                     
                     <div class="divide-y divide-gray-100 dark:divide-zinc-800/80 text-xs">
@@ -76,17 +76,17 @@
                     </div>
 
                     <!-- Checkout Button -->
-                    <a href="{{ route('checkout.index') }}" class="block w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-lg font-bold transition-all">
+                    <a href="{{ route('checkout.index') }}" class="block w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-[12px] font-bold transition-all">
                         Proceed to Checkout
                     </a>
                 </div>
 
                 <!-- Coupon Box -->
-                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 custom-shadow space-y-4">
+                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-6 custom-shadow space-y-4">
                     <h3 class="font-bold text-xs text-gray-900 dark:text-white uppercase tracking-wider">Promo Coupon</h3>
                     
                     @if ($coupon)
-                        <div class="p-2 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 rounded flex items-center justify-between text-xs">
+                        <div class="p-2 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 rounded-[8px] flex items-center justify-between text-xs">
                             <span class="font-bold text-emerald-800 dark:text-emerald-400">{{ $coupon }} Applied!</span>
                             <form action="{{ route('cart.coupon.remove') }}" method="POST">
                                 @csrf
@@ -102,9 +102,9 @@
                                 id="coupon-input"
                                 name="coupon" 
                                 placeholder="Enter coupon code..." 
-                                class="flex-1 px-3 py-1.5 rounded border border-gray-200 dark:border-zinc-800 text-xs bg-gray-50 dark:bg-zinc-900 focus:outline-none focus:border-[#f53003] uppercase"
+                                class="flex-1 px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 text-xs bg-gray-50 dark:bg-zinc-900 focus:outline-none focus:border-[#f53003] uppercase"
                             >
-                            <button type="submit" class="text-xs px-3 py-1.5 bg-[#111] dark:bg-white text-white dark:text-black rounded font-medium hover:opacity-90 cursor-pointer">
+                            <button type="submit" class="text-xs px-3 py-1.5 bg-[#111] dark:bg-white text-white dark:text-black rounded-[8px] font-medium hover:opacity-90 cursor-pointer">
                                 Apply
                             </button>
                         </form>
@@ -144,4 +144,6 @@
         </div>
     @endif
 @endsection
+
+
 
