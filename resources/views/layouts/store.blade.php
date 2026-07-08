@@ -21,24 +21,32 @@
         .dark .laravel-border{border-color:rgba(255,255,255,.15)}
         html{font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif}
     </style>
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+    @if (file_exists(public_path('build/manifest.json')))
         @php
             $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
-            $css = $manifest['resources/css/app.css']['css'][0] ?? null;
+            $cssEntry = $manifest['resources/css/app.css'] ?? null;
+            $css = $cssEntry['file'] ?? ($cssEntry['css'][0] ?? null);
             $js = $manifest['resources/js/app.js']['file'] ?? null;
+            $fontsCss = null;
+            foreach ($manifest as $key => $entry) {
+                if (is_array($entry) && str_contains((string) $key, 'fonts') && str_ends_with($entry['file'] ?? '', '.css')) {
+                    $fontsCss = $entry['file'];
+                    break;
+                }
+            }
         @endphp
+        @if ($fontsCss)
+            <link rel="stylesheet" href="{{ asset('build/' . $fontsCss) }}">
+        @endif
         @if ($css)
-            <link rel="preload" href="{{ asset('build/' . $css) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-            <noscript><link rel="stylesheet" href="{{ asset('build/' . $css) }}"></noscript>
+            <link rel="stylesheet" href="{{ asset('build/' . $css) }}">
         @endif
         @if ($js)
             <link rel="modulepreload" href="{{ asset('build/' . $js) }}">
             <script type="module" src="{{ asset('build/' . $js) }}" defer></script>
         @endif
     @else
-        <link rel="preload" as="style" href="https://unpkg.com/@tailwindcss/browser@4" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://unpkg.com/@tailwindcss/browser@4"></noscript>
-        <script defer src="{{ asset('resources/js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     @endif
 </head>
 <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] h-full flex flex-col antialiased">
