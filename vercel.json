@@ -6,6 +6,20 @@
       "runtime": "vercel-php@0.7.3"
     }
   },
+  "headers": [
+    {
+      "source": "/build/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(css|js|images|fonts)/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
   "routes": [
     {
       "src": "/build/(.*)",
