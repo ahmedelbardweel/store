@@ -35,7 +35,7 @@
 
     <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow">
         <!-- Main Card container matching welcome.blade.php layout -->
-        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row border border-[#19140015] dark:border-[#3E3E3A]/40 rounded-[15px] overflow-hidden shadow-lg">
+        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row border border-[#19140015] dark:border-[#3E3E3A]/40 rounded-[20px] overflow-hidden shadow-lg">
             
             <!-- Left Panel (Login Form) -->
             <div class="text-[13px] leading-[20px] flex-1 p-6 pb-6 lg:p-20 lg:pb-16 bg-white dark:bg-[#161615] dark:text-[#EDEDEC]">
@@ -43,7 +43,7 @@
                 <p class="mb-6 text-[#706f6c] dark:text-[#A1A09A]">Welcome back! Enter your credentials to access your library.</p>
                 
                 @if ($errors->any())
-                    <div class="mb-4 p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 rounded-[8px] text-xs">
+                    <div class="mb-4 p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 rounded-[12px] text-xs">
                         @foreach ($errors->all() as $error)
                             <div>{{ $error }}</div>
                         @endforeach
@@ -63,7 +63,7 @@
                             required 
                             autofocus
                             placeholder="admin@store.com"
-                            class="w-full px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
@@ -77,19 +77,19 @@
                             name="password" 
                             required 
                             placeholder="password"
-                            class="w-full px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
                     <!-- Remember Me -->
                     <div class="flex items-center gap-2 pt-1">
-                        <input type="checkbox" name="remember" id="remember" class="rounded-[8px] border-gray-300 text-[#f53003] focus:ring-[#f53003] w-3.5 h-3.5">
+                        <input type="checkbox" name="remember" id="remember" class="rounded-[12px] border-gray-300 text-[#f53003] focus:ring-[#f53003] w-3.5 h-3.5">
                         <label for="remember" class="text-[11px] text-gray-500">Remember session</label>
                     </div>
 
                     <!-- Submit -->
                     <div class="pt-2">
-                        <button type="submit" class="w-full bg-[#111111] dark:bg-white text-white dark:text-black py-2 rounded-[12px] text-xs font-semibold hover:bg-black dark:hover:bg-zinc-150 transition-colors cursor-pointer">
+                        <button type="submit" class="w-full bg-[#111111] dark:bg-white text-white dark:text-black py-2 rounded-[18px] text-xs font-semibold hover:bg-black dark:hover:bg-zinc-150 transition-colors cursor-pointer">
                             Log In
                         </button>
                     </div>
@@ -114,5 +114,6 @@
 
 </body>
 </html>
+
 
 

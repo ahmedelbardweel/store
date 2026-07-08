@@ -35,7 +35,7 @@
 
     <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow">
         <!-- Main Card container matching welcome.blade.php layout -->
-        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row border border-[#19140015] dark:border-[#3E3E3A]/40 rounded-[15px] overflow-hidden shadow-lg">
+        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row border border-[#19140015] dark:border-[#3E3E3A]/40 rounded-[20px] overflow-hidden shadow-lg">
             
             <!-- Left Panel (Registration Form) -->
             <div class="text-[13px] leading-[20px] flex-1 p-6 pb-6 lg:p-16 lg:pb-12 bg-white dark:bg-[#161615] dark:text-[#EDEDEC]">
@@ -43,7 +43,7 @@
                 <p class="mb-6 text-[#706f6c] dark:text-[#A1A09A]">Register to instantly download games, apps, and track bundles.</p>
                 
                 @if ($errors->any())
-                    <div class="mb-4 p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 rounded-[8px] text-xs">
+                    <div class="mb-4 p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-400 rounded-[12px] text-xs">
                         @foreach ($errors->all() as $error)
                             <div>{{ $error }}</div>
                         @endforeach
@@ -63,7 +63,7 @@
                             required 
                             autofocus
                             placeholder="Ahmed Test"
-                            class="w-full px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
@@ -76,7 +76,7 @@
                             value="{{ old('email') }}"
                             required 
                             placeholder="user@store.com"
-                            class="w-full px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
@@ -88,7 +88,7 @@
                             name="password" 
                             required 
                             placeholder="min 8 characters"
-                            class="w-full px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
@@ -100,13 +100,13 @@
                             name="password_confirmation" 
                             required 
                             placeholder="re-enter password"
-                            class="w-full px-3 py-1.5 rounded-[8px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-xs focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
                     <!-- Submit -->
                     <div class="pt-2">
-                        <button type="submit" class="w-full bg-[#111111] dark:bg-white text-white dark:text-black py-2 rounded-[12px] text-xs font-semibold hover:bg-black dark:hover:bg-zinc-150 transition-colors cursor-pointer">
+                        <button type="submit" class="w-full bg-[#111111] dark:bg-white text-white dark:text-black py-2 rounded-[18px] text-xs font-semibold hover:bg-black dark:hover:bg-zinc-150 transition-colors cursor-pointer">
                             Create Account
                         </button>
                     </div>
@@ -131,5 +131,6 @@
 
 </body>
 </html>
+
 
 

@@ -5,7 +5,7 @@
 @section('content')
     <!-- Hero Slider (Aesthetic Highlight section) -->
     <div
-        class="mb-10 relative overflow-hidden rounded-[15px] bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 p-6 sm:p-10 custom-shadow flex flex-col md:flex-row items-center gap-8 min-h-[360px]">
+        class="mb-10 relative overflow-hidden rounded-[20px] bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 p-6 sm:p-10 custom-shadow flex flex-col md:flex-row items-center gap-8 min-h-[360px]">
         <div class="flex-1 space-y-4">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 bg-red-50 dark:bg-red-950/20 text-[#f53003] dark:text-[#FF4433] rounded-full text-xs font-semibold uppercase tracking-wider">
@@ -27,37 +27,37 @@
             </p>
             <div class="pt-2 flex flex-wrap gap-3">
                 <a href="#store-explore"
-                    class="bg-[#111111] dark:bg-white dark:text-black text-white px-5 py-2.5 rounded-[12px] text-sm font-medium hover:bg-black dark:hover:bg-zinc-150 transition-colors">
+                    class="bg-[#111111] dark:bg-white dark:text-black text-white px-5 py-2.5 rounded-[18px] text-sm font-medium hover:bg-black dark:hover:bg-zinc-150 transition-colors">
                     Browse All Products
                 </a>
                 <a href="?tab=free"
-                    class="px-5 py-2.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 text-sm font-medium hover:border-[#f53003] hover:text-[#f53003] transition-all">
+                    class="px-5 py-2.5 rounded-[18px] border border-gray-200 dark:border-zinc-800 text-sm font-medium hover:border-[#f53003] hover:text-[#f53003] transition-all">
                     Explore Free Downloads
                 </a>
             </div>
         </div>
-        <div class="flex-1 w-full max-w-sm md:max-w-none relative aspect-video rounded-[15px] overflow-hidden">
+        <div class="flex-1 w-full max-w-sm md:max-w-none relative aspect-video rounded-[20px] overflow-hidden">
             <!-- Dynamic Hero Graphic (Laravel 13 Style layered cards with parent matching background) -->
             <div class="w-full h-full bg-white dark:bg-[#161615] flex items-center justify-center relative">
                 <span class="text-6xl md:text-8xl font-black text-gray-200/60 dark:text-zinc-800/40 select-none">13</span>
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-5 w-5/6 max-w-[360px]">
                     <div
-                        class="flex-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-[15px] p-4 sm:p-5 shadow-lg transform -rotate-6 flex flex-col items-center">
+                        class="flex-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-[20px] p-4 sm:p-5 shadow-lg transform -rotate-6 flex flex-col items-center">
                         @include('components.category-icon', ['slug' => 'games', 'class' => 'w-8 h-8 text-gray-500'])
-                        <div class="h-2.5 w-16 bg-gray-200 dark:bg-zinc-800/80 rounded-[8px] mt-3"></div>
-                        <div class="h-2 w-10 bg-gray-100 dark:bg-zinc-800/50 rounded-[8px] mt-1.5"></div>
+                        <div class="h-2.5 w-16 bg-gray-200 dark:bg-zinc-800/80 rounded-[12px] mt-3"></div>
+                        <div class="h-2 w-10 bg-gray-100 dark:bg-zinc-800/50 rounded-[12px] mt-1.5"></div>
                     </div>
                     <div
-                        class="flex-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[15px] p-4 sm:p-5 shadow-xl transform translate-y-2 scale-105 z-20 flex flex-col items-center">
+                        class="flex-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[20px] p-4 sm:p-5 shadow-xl transform translate-y-2 scale-105 z-20 flex flex-col items-center">
                         @include('components.category-icon', ['slug' => 'music', 'class' => 'w-8 h-8 text-gray-750 dark:text-zinc-300'])
-                        <div class="h-2.5 w-20 bg-gray-200 dark:bg-zinc-800/80 rounded-[8px] mt-3"></div>
-                        <div class="h-2 w-12 bg-gray-100 dark:bg-zinc-800/50 rounded-[8px] mt-1.5"></div>
+                        <div class="h-2.5 w-20 bg-gray-200 dark:bg-zinc-800/80 rounded-[12px] mt-3"></div>
+                        <div class="h-2 w-12 bg-gray-100 dark:bg-zinc-800/50 rounded-[12px] mt-1.5"></div>
                     </div>
                     <div
-                        class="flex-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-[15px] p-4 sm:p-5 shadow-lg transform rotate-6 flex flex-col items-center">
+                        class="flex-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-[20px] p-4 sm:p-5 shadow-lg transform rotate-6 flex flex-col items-center">
                         @include('components.category-icon', ['slug' => 'applications', 'class' => 'w-8 h-8 text-gray-500'])
-                        <div class="h-2.5 w-14 bg-gray-200 dark:bg-zinc-800/80 rounded-[8px] mt-3"></div>
-                        <div class="h-2 w-8 bg-gray-100 dark:bg-zinc-800/50 rounded-[8px] mt-1.5"></div>
+                        <div class="h-2.5 w-14 bg-gray-200 dark:bg-zinc-800/80 rounded-[12px] mt-3"></div>
+                        <div class="h-2 w-8 bg-gray-100 dark:bg-zinc-800/50 rounded-[12px] mt-1.5"></div>
                     </div>
                 </div>
             </div>
@@ -72,9 +72,9 @@
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
             @foreach ($categories as $cat)
                 <a href="?category={{ $cat->slug }}"
-                    class="p-4 rounded-[15px] border {{ $slug === $cat->slug ? 'border-[#f53003] bg-red-50/10' : 'border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#161615]' }} hover:border-[#f53003] hover:scale-[1.01] transition-all flex items-center gap-3 group">
+                    class="p-4 rounded-[20px] border {{ $slug === $cat->slug ? 'border-[#f53003] bg-red-50/10' : 'border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#161615]' }} hover:border-[#f53003] hover:scale-[1.01] transition-all flex items-center gap-3 group">
                     <div
-                        class="p-2 bg-gray-50 dark:bg-zinc-900 rounded-[12px] group-hover:scale-105 transition-transform text-[#f53003] dark:text-[#FF4433]">
+                        class="p-2 bg-gray-50 dark:bg-zinc-900 rounded-[18px] group-hover:scale-105 transition-transform text-[#f53003] dark:text-[#FF4433]">
                         @include('components.category-icon', ['slug' => $cat->slug, 'class' => 'w-6 h-6'])
                     </div>
                     <div>
@@ -120,7 +120,7 @@
         <!-- Product Grid -->
         @if ($products->isEmpty())
             <div
-                class="text-center py-16 bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] custom-shadow">
+                class="text-center py-16 bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] custom-shadow">
                 <svg class="w-12 h-12 text-gray-300 dark:text-zinc-700 mx-auto mb-3" fill="none" stroke="currentColor"
                     stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -134,7 +134,7 @@
                 @foreach ($products as $product)
                     <!-- Product Card -->
                     <div
-                        class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] overflow-hidden custom-shadow group hover:border-[#f53003]/50 transition-all flex flex-col h-full">
+                        class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] overflow-hidden custom-shadow group hover:border-[#f53003]/50 transition-all flex flex-col h-full">
 
                         <!-- Thumbnail/Cover -->
                         <a href="{{ route('products.show', $product->slug) }}"
@@ -144,7 +144,7 @@
                                 loading="lazy">
                             <!-- Category Badge -->
                             <span
-                                class="absolute top-3 left-3 px-2 py-0.5 rounded-[8px] text-[10px] font-semibold uppercase tracking-wider bg-white/95 dark:bg-zinc-900/95 shadow-sm text-gray-800 dark:text-zinc-200">
+                                class="absolute top-3 left-3 px-2 py-0.5 rounded-[12px] text-[10px] font-semibold uppercase tracking-wider bg-white/95 dark:bg-zinc-900/95 shadow-sm text-gray-800 dark:text-zinc-200">
                                 {{ $product->category->name }}
                             </span>
                         </a>
@@ -176,7 +176,7 @@
                                 @if ($product->is_free)
                                     <!-- Direct Download / Detail link -->
                                     <a href="{{ route('products.show', $product->slug) }}"
-                                        class="text-xs px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] hover:text-[#f53003] rounded-[10px] font-medium transition-all">
+                                        class="text-xs px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] hover:text-[#f53003] rounded-[15px] font-medium transition-all">
                                         Get Free
                                     </a>
                                 @else
@@ -184,7 +184,7 @@
                                     <form action="{{ route('cart.add', $product) }}" method="POST">
                                         @csrf
                                         <button type="submit"
-                                            class="text-xs px-3 py-1.5 bg-[#111] dark:bg-white text-white dark:text-black hover:bg-[#f53003] dark:hover:bg-[#FF4433] dark:hover:text-white rounded-[10px] font-medium transition-all cursor-pointer">
+                                            class="text-xs px-3 py-1.5 bg-[#111] dark:bg-white text-white dark:text-black hover:bg-[#f53003] dark:hover:bg-[#FF4433] dark:hover:text-white rounded-[15px] font-medium transition-all cursor-pointer">
                                             Buy Now
                                         </button>
                                     </form>
@@ -203,4 +203,5 @@
         @endif
     </div>
 @endsection
+
 

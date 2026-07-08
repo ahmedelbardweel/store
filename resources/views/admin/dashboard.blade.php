@@ -9,10 +9,10 @@
             <p class="text-xs text-gray-400 mt-1">General system statistics, sales overview and item logs.</p>
         </div>
         <div class="flex gap-2">
-            <a href="{{ route('admin.products') }}" class="text-xs px-3.5 py-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] rounded-[10px] font-semibold transition-all">
+            <a href="{{ route('admin.products') }}" class="text-xs px-3.5 py-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] rounded-[15px] font-semibold transition-all">
                 Manage Products
             </a>
-            <a href="{{ route('admin.orders') }}" class="text-xs px-3.5 py-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] rounded-[10px] font-semibold transition-all">
+            <a href="{{ route('admin.orders') }}" class="text-xs px-3.5 py-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] rounded-[15px] font-semibold transition-all">
                 Manage Orders
             </a>
         </div>
@@ -20,19 +20,19 @@
 
     <!-- Stats Widgets Grid -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-5 custom-shadow">
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-5 custom-shadow">
             <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Total Revenue</span>
             <span class="text-2xl font-black text-emerald-650 dark:text-emerald-400">${{ number_format($stats['total_revenue'], 2) }}</span>
         </div>
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-5 custom-shadow">
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-5 custom-shadow">
             <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Completed Orders</span>
             <span class="text-2xl font-black text-gray-900 dark:text-white">{{ $stats['total_orders'] }}</span>
         </div>
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-5 custom-shadow">
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-5 custom-shadow">
             <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Active Products</span>
             <span class="text-2xl font-black text-gray-900 dark:text-white">{{ $stats['total_products'] }}</span>
         </div>
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-5 custom-shadow">
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-5 custom-shadow">
             <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Registered Users</span>
             <span class="text-2xl font-black text-gray-900 dark:text-white">{{ $stats['total_users'] }}</span>
         </div>
@@ -45,7 +45,7 @@
         <div class="lg:col-span-2 space-y-6">
             <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">Recent Orders</h2>
             
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] overflow-hidden custom-shadow">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] overflow-hidden custom-shadow">
                 @if ($recentOrders->isEmpty())
                     <p class="text-xs text-gray-400 text-center py-8">No orders processed yet.</p>
                 @else
@@ -71,7 +71,7 @@
                                     </td>
                                     <td class="p-4 text-right font-black">${{ number_format($order->total_amount, 2) }}</td>
                                     <td class="p-4 text-center">
-                                        <span class="px-1.5 py-0.5 rounded-[8px] text-[8px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600">
+                                        <span class="px-1.5 py-0.5 rounded-[12px] text-[8px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600">
                                             {{ $order->payment_status }}
                                         </span>
                                     </td>
@@ -88,14 +88,14 @@
             <!-- Top Products -->
             <div>
                 <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider mb-4">Top Downloads</h2>
-                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-6 custom-shadow space-y-4">
+                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-4">
                     @foreach ($topProducts as $p)
                         <div class="flex items-center justify-between gap-4 text-xs">
                             <div class="min-w-0">
                                 <span class="font-bold text-gray-800 dark:text-zinc-200 truncate block">{{ $p->name }}</span>
                                 <span class="text-[9px] text-gray-400 uppercase">{{ $p->category->name }}</span>
                             </div>
-                            <span class="font-black text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 px-2 py-1 rounded-[8px]">
+                            <span class="font-black text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 px-2 py-1 rounded-[12px]">
                                 {{ $p->download_count }} dl
                             </span>
                         </div>
@@ -106,7 +106,7 @@
             <!-- Category Stats -->
             <div>
                 <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider mb-4">Downloads By Category</h2>
-                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[15px] p-6 custom-shadow space-y-4">
+                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-4">
                     @foreach ($categoryStats as $c)
                         <div class="text-xs space-y-1">
                             <div class="flex items-center justify-between">
@@ -131,5 +131,6 @@
 
     </div>
 @endsection
+
 
 
