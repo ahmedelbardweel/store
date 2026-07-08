@@ -1,6 +1,7 @@
 @extends('layouts.store')
 
 @section('title', 'Welcome to Store13 - Games, Music, Videos & Apps')
+@section('description', 'Browse and download games, royalty-free music, HD videos, and open-source apps. Instant digital downloads at Store13.')
 
 @section('content')
     <!-- Hero Slider (Aesthetic Highlight section) -->

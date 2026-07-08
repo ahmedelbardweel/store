@@ -11,6 +11,7 @@
         }
     </script>
     <title>@yield('title', 'Digital Download Store')</title>
+    <meta name="description" content="@yield('description', 'Store13 – Your digital marketplace for Games, Music, Videos, and Apps. Browse, buy and download instantly.')">
     
     <!-- Instrument Sans Font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,8 +52,8 @@
         <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
             
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="flex items-center gap-2 group shrink-0">
-                <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#f53003] flex items-center justify-center text-white font-black text-base sm:text-lg transition-transform group-hover:scale-105">
+            <a href="{{ route('home') }}" aria-label="Store13 – Home" class="flex items-center gap-2 group shrink-0">
+                <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#f53003] flex items-center justify-center text-white font-black text-base sm:text-lg transition-transform group-hover:scale-105" aria-hidden="true">
                     L
                 </div>
                 <span class="font-bold text-base sm:text-lg tracking-tight group-hover:text-[#f53003] transition-colors">
@@ -63,9 +64,14 @@
             <!-- Search Bar (Desktop only) -->
             <div class="flex-1 max-w-md relative hidden md:block">
                 <div class="relative">
+                    <label for="global-search" class="sr-only">Search products</label>
                     <input 
                         type="text" 
                         id="global-search" 
+                        role="combobox"
+                        aria-autocomplete="list"
+                        aria-controls="search-results"
+                        aria-expanded="false"
                         placeholder="Search games, music, videos, apps..." 
                         class="w-full px-4 py-1.5 rounded-lg text-sm bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] focus:ring-1 focus:ring-[#f53003] transition-all"
                         autocomplete="off"
@@ -84,18 +90,20 @@
             <!-- Right Actions -->
             <div class="flex items-center gap-1 sm:gap-3">
                 <!-- Mobile Search Toggle -->
-                <button id="mobile-search-toggle" class="md:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] transition-colors rounded-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="mobile-search-toggle" aria-label="Open search" aria-expanded="false" aria-controls="mobile-search-bar" class="md:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] transition-colors rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
+                    <span class="sr-only">Search</span>
                 </button>
 
                 <!-- Cart Icon -->
-                <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('cart.index') }}" aria-label="View shopping cart" class="relative p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                     </svg>
-                    <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-[#f53003] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    <span id="cart-badge" aria-label="items in cart" class="absolute -top-0.5 -right-0.5 bg-[#f53003] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    <span class="sr-only">Shopping Cart</span>
                 </a>
 
                 <!-- Settings Icon -->
@@ -134,13 +142,14 @@
                 </div>
 
                 <!-- Mobile Hamburger -->
-                <button id="mobile-menu-toggle" class="sm:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] transition-colors rounded-lg">
-                    <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="sm:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] transition-colors rounded-lg">
+                    <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
-                    <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
+                    <span class="sr-only">Menu</span>
                 </button>
             </div>
         </div>
@@ -148,9 +157,14 @@
         <!-- Mobile Search Bar (Expandable) -->
         <div id="mobile-search-bar" class="hidden md:hidden border-t border-gray-100 dark:border-zinc-800 px-4 py-2.5 bg-white dark:bg-[#161615]">
             <div class="relative">
+                <label for="mobile-search-input" class="sr-only">Search products</label>
                 <input 
                     type="text" 
                     id="mobile-search-input" 
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-controls="mobile-search-results"
+                    aria-expanded="false"
                     placeholder="Search products..." 
                     class="w-full px-4 py-2 rounded-lg text-sm bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] focus:ring-1 focus:ring-[#f53003] transition-all"
                     autocomplete="off"
@@ -229,11 +243,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
     <!-- Settings Slide-Over Drawer -->
-    <div id="settings-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <div id="settings-drawer" class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'left-0 border-r' : 'right-0 border-l' }} w-full sm:w-[400px] bg-white dark:bg-[#161615] border-gray-200 dark:border-zinc-800 z-50 transform {{ app()->getLocale() === 'ar' ? '-translate-x-full' : 'translate-x-full' }} transition-transform duration-300 flex flex-col shadow-2xl">
+    <div id="settings-backdrop" role="presentation" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="settings-drawer" role="dialog" aria-modal="true" aria-label="{{ app()->getLocale() === 'ar' ? 'الإعدادات والخيارات' : 'Settings & Options' }}" class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'left-0 border-r' : 'right-0 border-l' }} w-full sm:w-[400px] bg-white dark:bg-[#161615] border-gray-200 dark:border-zinc-800 z-50 transform {{ app()->getLocale() === 'ar' ? '-translate-x-full' : 'translate-x-full' }} transition-transform duration-300 flex flex-col shadow-2xl">
         
         <!-- Drawer Header -->
         <div class="p-4 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between">
@@ -244,10 +256,11 @@
                 </svg>
                 {{ app()->getLocale() === 'ar' ? 'الإعدادات والخيارات' : 'Settings & Options' }}
             </h2>
-            <button id="settings-close" class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-500 cursor-pointer">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="settings-close" aria-label="Close settings" class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-500 cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
+                <span class="sr-only">Close</span>
             </button>
         </div>
 
