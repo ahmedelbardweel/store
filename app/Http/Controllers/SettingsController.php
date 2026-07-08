@@ -53,6 +53,9 @@ class SettingsController extends Controller
         
         // Remove from saved accounts
         $savedAccounts = json_decode($request->cookie('saved_accounts', '{}'), true);
+        if (!is_array($savedAccounts)) {
+            $savedAccounts = [];
+        }
         if (isset($savedAccounts[$user->id])) {
             unset($savedAccounts[$user->id]);
             cookie()->queue('saved_accounts', json_encode($savedAccounts), 60 * 24 * 30);
@@ -74,6 +77,9 @@ class SettingsController extends Controller
     public function switchAccount(Request $request, $id)
     {
         $savedAccounts = json_decode($request->cookie('saved_accounts', '{}'), true);
+        if (!is_array($savedAccounts)) {
+            $savedAccounts = [];
+        }
 
         if (!isset($savedAccounts[$id])) {
             return back()->with('error', __('Account not found. Please log in first.'));
@@ -109,6 +115,9 @@ class SettingsController extends Controller
     public function removeSavedAccount(Request $request, $id)
     {
         $savedAccounts = json_decode($request->cookie('saved_accounts', '{}'), true);
+        if (!is_array($savedAccounts)) {
+            $savedAccounts = [];
+        }
         if (isset($savedAccounts[$id])) {
             unset($savedAccounts[$id]);
             cookie()->queue('saved_accounts', json_encode($savedAccounts), 60 * 24 * 30);

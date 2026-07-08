@@ -328,11 +328,13 @@
                     </div>
                 @endauth
 
-                <!-- Saved Accounts Switcher List -->
                 @php
                     $savedAccounts = json_decode(request()->cookie('saved_accounts', '{}'), true);
+                    if (!is_array($savedAccounts)) {
+                        $savedAccounts = [];
+                    }
                     $otherAccounts = array_filter($savedAccounts, function($acc) {
-                        return !Auth::check() || $acc['id'] != Auth::id();
+                        return is_array($acc) && isset($acc['id']) && (!Auth::check() || $acc['id'] != Auth::id());
                     });
                 @endphp
 
