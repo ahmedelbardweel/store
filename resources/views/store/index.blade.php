@@ -3,9 +3,7 @@
 @section('title', __('Welcome to Store13 - Games, Music, Videos & Apps'))
 @section('description', __('Browse and download games, royalty-free music, HD videos, and open-source apps. Instant digital downloads at Store13.'))
 
-@push('head')
-    <link rel="preload" href="{{ asset('images/hero.svg') }}" as="image" type="image/svg+xml" fetchpriority="high">
-@endpush
+
 
 @section('content')
     <div class="mb-10 relative overflow-hidden rounded-xl bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 p-6 sm:p-10 custom-shadow flex flex-col md:flex-row items-center gap-8 min-h-[360px]">
@@ -32,16 +30,27 @@
                 </a>
             </div>
         </div>
-        <div class="flex-1 w-full max-w-sm md:max-w-none relative aspect-video rounded-xl overflow-hidden bg-[#1b1b18]">
-            <img
-                src="{{ asset('images/hero.svg') }}"
-                alt="{{ __('Discover games, music, videos and apps at Store13') }}"
-                width="640"
-                height="360"
-                fetchpriority="high"
-                decoding="async"
-                class="w-full h-full object-cover"
-            >
+        <div class="flex-1 w-full max-w-sm md:max-w-none relative aspect-video rounded-xl overflow-hidden">
+            <div class="w-full h-full bg-white dark:bg-[#161615] flex items-center justify-center relative">
+                <span class="text-6xl md:text-8xl font-black text-gray-200/60 dark:text-zinc-800/40 select-none">13</span>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-5 w-5/6 max-w-[360px]">
+                    <div class="flex-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-4 sm:p-5 shadow-lg transform -rotate-6 flex flex-col items-center">
+                        @include('components.category-icon', ['slug' => 'games', 'class' => 'w-8 h-8 text-gray-500'])
+                        <div class="h-2.5 w-16 bg-gray-200 dark:bg-zinc-800/80 rounded-md mt-3"></div>
+                        <div class="h-2 w-10 bg-gray-100 dark:bg-zinc-800/50 rounded-md mt-1.5"></div>
+                    </div>
+                    <div class="flex-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 sm:p-5 shadow-xl transform translate-y-2 scale-105 z-20 flex flex-col items-center">
+                        @include('components.category-icon', ['slug' => 'music', 'class' => 'w-8 h-8 text-gray-750 dark:text-zinc-300'])
+                        <div class="h-2.5 w-20 bg-gray-200 dark:bg-zinc-800/80 rounded-md mt-3"></div>
+                        <div class="h-2 w-12 bg-gray-100 dark:bg-zinc-800/50 rounded-md mt-1.5"></div>
+                    </div>
+                    <div class="flex-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-4 sm:p-5 shadow-lg transform rotate-6 flex flex-col items-center">
+                        @include('components.category-icon', ['slug' => 'applications', 'class' => 'w-8 h-8 text-gray-500'])
+                        <div class="h-2.5 w-14 bg-gray-200 dark:bg-zinc-800/80 rounded-md mt-3"></div>
+                        <div class="h-2 w-8 bg-gray-100 dark:bg-zinc-800/50 rounded-md mt-1.5"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

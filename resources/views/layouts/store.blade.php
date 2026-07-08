@@ -36,10 +36,12 @@
             }
         @endphp
         @if ($fontsCss)
-            <link rel="stylesheet" href="{{ asset('build/' . $fontsCss) }}">
+            <link rel="preload" href="{{ asset('build/' . $fontsCss) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="{{ asset('build/' . $fontsCss) }}"></noscript>
         @endif
         @if ($css)
-            <link rel="stylesheet" href="{{ asset('build/' . $css) }}">
+            <link rel="preload" href="{{ asset('build/' . $css) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="{{ asset('build/' . $css) }}"></noscript>
         @endif
         @if ($js)
             <link rel="modulepreload" href="{{ asset('build/' . $js) }}">
