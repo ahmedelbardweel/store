@@ -3,28 +3,28 @@
 @section('title', 'My Library - Store13')
 
 @section('content')
-    <div class="mb-8">
-        <h1 class="text-3xl font-black tracking-tight text-gray-900 dark:text-white">My Library</h1>
+    <div class="mb-6 sm:mb-8">
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-gray-900 dark:text-white">My Library</h1>
         <p class="text-xs text-gray-400 mt-1">Manage and download your purchased digital products.</p>
     </div>
 
     <!-- Quick Stats Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-5 custom-shadow">
-            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Total Spent</span>
-            <span class="text-2xl font-black text-gray-900 dark:text-white">${{ number_format($totalSpent, 2) }}</span>
+    <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-3 sm:p-5 custom-shadow">
+            <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider block">Total Spent</span>
+            <span class="text-lg sm:text-2xl font-black text-gray-900 dark:text-white">${{ number_format($totalSpent, 2) }}</span>
         </div>
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-5 custom-shadow">
-            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Purchased Items</span>
-            <span class="text-2xl font-black text-gray-900 dark:text-white">{{ $totalProducts }}</span>
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-3 sm:p-5 custom-shadow">
+            <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider block">Items</span>
+            <span class="text-lg sm:text-2xl font-black text-gray-900 dark:text-white">{{ $totalProducts }}</span>
         </div>
-        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-5 custom-shadow">
-            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Total Downloads</span>
-            <span class="text-2xl font-black text-gray-900 dark:text-white">{{ $totalDownloads }} times</span>
+        <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-3 sm:p-5 custom-shadow">
+            <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider block">Downloads</span>
+            <span class="text-lg sm:text-2xl font-black text-gray-900 dark:text-white">{{ $totalDownloads }}x</span>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
         
         <!-- Library List (Left 2 Columns) -->
         <div class="lg:col-span-2 space-y-6">

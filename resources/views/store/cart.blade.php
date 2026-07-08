@@ -17,14 +17,14 @@
             </a>
         </div>
     @else
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             
             <!-- Items Column (Left 2 columns) -->
-            <div class="lg:col-span-2 space-y-4">
+            <div class="lg:col-span-2 space-y-3">
                 @foreach ($items as $item)
                     @php $p = $item['product']; @endphp
-                    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-4 custom-shadow flex items-center gap-4">
-                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-16 h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800">
+                    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-3 sm:p-4 custom-shadow flex items-center gap-3 sm:gap-4">
+                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800 shrink-0">
                         
                         <div class="flex-1 min-w-0">
                             <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400">{{ $p->category->name }}</span>
@@ -34,7 +34,7 @@
                             <span class="text-[10px] text-gray-400 block">v{{ $p->version ?? '1.0' }} • {{ $p->file_size ?? 'N/A' }}</span>
                         </div>
 
-                        <div class="flex items-center gap-6">
+                        <div class="flex items-center gap-3 sm:gap-6 shrink-0">
                             <span class="font-black text-sm text-gray-900 dark:text-white">
                                 {{ $p->formatted_price }}
                             </span>
@@ -42,7 +42,7 @@
                             <form action="{{ route('cart.remove', $p) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-xs text-gray-400 hover:text-[#f53003] transition-colors cursor-pointer" title="Remove item">
+                                <button type="submit" class="text-xs text-gray-400 hover:text-[#f53003] transition-colors cursor-pointer p-1" title="Remove item">
                                     ✕
                                 </button>
                             </form>

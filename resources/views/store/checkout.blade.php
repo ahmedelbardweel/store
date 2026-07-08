@@ -3,47 +3,47 @@
 @section('title', 'Secure Checkout - Store13')
 
 @section('content')
-    <h1 class="text-2xl font-black tracking-tight text-gray-900 dark:text-white mb-6">Secure Checkout</h1>
+    <h1 class="text-xl sm:text-2xl font-black tracking-tight text-gray-900 dark:text-white mb-5 sm:mb-6">Secure Checkout</h1>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
         
         <!-- Left 2 Columns: Payment Information Form -->
         <div class="lg:col-span-2 space-y-6">
 
             <!-- 🧪 Test Card Helper Box -->
-            <div class="bg-amber-50 dark:bg-amber-950/20 border border-amber-300 dark:border-amber-700 rounded-2xl p-5 space-y-3">
-                <div class="flex items-center justify-between gap-4">
+            <div class="bg-amber-50 dark:bg-amber-950/20 border border-amber-300 dark:border-amber-700 rounded-2xl p-4 sm:p-5 space-y-3">
+                <div class="flex items-center justify-between gap-3">
                     <div class="flex items-center gap-2">
-                        <svg class="w-4.5 h-4.5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.214.155-.385.342-.385h.39c.187 0 .342-.171.342-.385v-.706c0-.214-.155-.385-.342-.385H9.01c-.187 0-.342.171-.342.385v.706c0 .214.155.385.342.385h.39c.187 0 .342.171.342.385v7.234a9.075 9.075 0 0 1-1.637 5.17c-.456.634-.074 1.517.697 1.517h7.206c.77 0 1.153-.883.697-1.517a9.075 9.075 0 0 1-1.637-5.17V6.087Z" />
                         </svg>
-                        <span class="font-bold text-xs text-amber-800 dark:text-amber-400 uppercase tracking-wider">Test Mode — Use Demo Card Data</span>
+                        <span class="font-bold text-xs text-amber-800 dark:text-amber-400 uppercase tracking-wider">Test Mode</span>
                     </div>
                     <button 
                         type="button" 
                         id="fill-test-card"
-                        class="text-[10px] px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-md font-bold transition-all cursor-pointer shrink-0 flex items-center gap-1"
+                        class="text-[10px] px-2.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-md font-bold transition-all cursor-pointer shrink-0 flex items-center gap-1"
                     >
                         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                         </svg>
-                        Auto-Fill Test Card
+                        Auto-Fill
                     </button>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px]">
-                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
-                        <span class="block text-gray-400 mb-0.5">Cardholder Name</span>
-                        <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono">Ahmed Test</span>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-[11px]">
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                        <span class="block text-gray-400 mb-0.5">Name</span>
+                        <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono text-[11px]">Ahmed Test</span>
                     </div>
-                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
-                        <span class="block text-gray-400 mb-0.5">Card Number</span>
-                        <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono">4242-4242-4242-4242</span>
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                        <span class="block text-gray-400 mb-0.5">Card No.</span>
+                        <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono text-[11px] break-all">4242-4242-4242-4242</span>
                     </div>
-                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
-                        <span class="block text-gray-400 mb-0.5">Expiry Date</span>
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                        <span class="block text-gray-400 mb-0.5">Expiry</span>
                         <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono">12/28</span>
                     </div>
-                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
                         <span class="block text-gray-400 mb-0.5">CVV</span>
                         <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono">123</span>
                     </div>

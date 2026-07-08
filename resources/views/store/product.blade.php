@@ -3,17 +3,17 @@
 @section('title', $product->name . ' - Store13')
 
 @section('content')
-    <div class="mb-6">
+    <div class="mb-4 sm:mb-6">
         <a href="{{ route('home') }}" class="text-xs text-gray-400 hover:text-[#f53003] transition-colors flex items-center gap-1">
             ← Back to Store
         </a>
     </div>
 
     <!-- Product Layout Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 pb-28 lg:pb-0">
         
         <!-- Left 2 Columns: Media & Description -->
-        <div class="lg:col-span-2 space-y-8">
+        <div class="lg:col-span-2 space-y-6">
             
             <!-- Main Title & Meta -->
             <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 custom-shadow space-y-4">
@@ -173,9 +173,10 @@
         </div>
 
         <!-- Right 1 Column: Checkout / Download Action Box -->
-        <div class="space-y-6">
+        <!-- Desktop: shown inline | Mobile: hidden here, shown as sticky bottom bar -->
+        <div class="hidden lg:block space-y-6">
             
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 custom-shadow space-y-6 sticky top-6">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 custom-shadow space-y-6 sticky top-20">
                 
                 <div class="space-y-1">
                     <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Price</span>
@@ -240,5 +241,46 @@
 
         </div>
 
+    </div>
+
+    <!-- Mobile Sticky Checkout Bar (shown only on mobile) -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white dark:bg-[#161615] border-t border-gray-200 dark:border-zinc-800 px-4 py-3 safe-area-bottom">
+        <div class="flex items-center gap-3 max-w-7xl mx-auto">
+            <!-- Price -->
+            <div class="flex-shrink-0">
+                <div class="text-[10px] text-gray-400 uppercase tracking-wider">Price</div>
+                <div class="text-xl font-black text-gray-900 dark:text-white leading-tight">{{ $product->formatted_price }}</div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="flex-1">
+                @if ($product->is_free)
+                    @auth
+                        <form action="{{ route('checkout.process') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="card_name" value="Free Item">
+                            <input type="hidden" name="card_number" value="0000-0000-0000-0000">
+                            <input type="hidden" name="card_expiry" value="00/00">
+                            <input type="hidden" name="card_cvv" value="000">
+                            @php session()->put('cart', [$product->id => 1]); @endphp
+                            <button type="submit" class="w-full text-center text-sm py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+                                Download Free
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="block w-full text-center text-sm py-3 bg-[#111111] dark:bg-white text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-all">
+                            Log in to Download
+                        </a>
+                    @endauth
+                @else
+                    <form action="{{ route('cart.add', $product) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full text-center text-sm py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+                            Buy Now
+                        </button>
+                    </form>
+                @endif
+            </div>
+        </div>
     </div>
 @endsection
