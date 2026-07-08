@@ -9,6 +9,7 @@
     <title>@yield('title', __('Digital Download Store'))</title>
     <meta name="description" content="@yield('description', __('Store13 – Your digital marketplace for Games, Music, Videos, and Apps. Browse, buy and download instantly.'))">
     <meta name="locale" content="{{ app()->getLocale() }}">
+    @stack('head')
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">

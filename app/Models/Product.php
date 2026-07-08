@@ -63,12 +63,30 @@ class Product extends Model
 
     public function getThumbnailUrlAttribute(): string
     {
-        if ($this->thumbnail && str_starts_with($this->thumbnail, 'http')) {
-            return $this->thumbnail;
+        if ($this->thumbnail) {
+            if (str_starts_with($this->thumbnail, 'http')) {
+                if (str_contains($this->thumbnail, 'placehold.co') && $this->slug) {
+                    $local = 'images/products/' . $this->slug . '.svg';
+                    if (is_file(public_path($local))) {
+                        return asset($local);
+                    }
+                }
+
+                return $this->thumbnail;
+            }
+
+            if (str_starts_with($this->thumbnail, 'images/')) {
+                return asset($this->thumbnail);
+            }
+
+            return asset('storage/' . $this->thumbnail);
         }
-        return $this->thumbnail
-            ? asset('storage/' . $this->thumbnail)
-            : 'https://placehold.co/400x300/1b1b18/f53003?text=' . urlencode($this->name);
+
+        if ($this->slug && is_file(public_path('images/products/' . $this->slug . '.svg'))) {
+            return asset('images/products/' . $this->slug . '.svg');
+        }
+
+        return asset('images/products/default.svg');
     }
 
     public function getFormattedPriceAttribute(): string

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" role="img" aria-label="Cyberpunk 2077">
+  <rect width="100%" height="100%" fill="#1b1b18"/>
+  <rect x="16" y="16" width="368" height="268" rx="12" fill="#f53003" opacity="0.12"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#f53003" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Cyberpunk 2077</text>
+</svg>
