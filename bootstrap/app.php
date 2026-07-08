@@ -5,7 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 
-$app = Application::configure(basePath: dirname(__DIR__))
+return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
@@ -20,9 +20,3 @@ $app = Application::configure(basePath: dirname(__DIR__))
         );
     })->create();
 
-// Use /tmp/storage on Vercel (read-only filesystem except /tmp)
-if (isset($_ENV['VERCEL']) || getenv('VERCEL') || is_dir('/var/task')) {
-    $app->useStoragePath('/tmp/storage');
-}
-
-return $app;

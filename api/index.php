@@ -1,16 +1,27 @@
 <?php
 
-// Vercel: create writable directories in /tmp (only writable location)
+// Vercel: create writable directories in /tmp
 $dirs = [
     '/tmp/storage/framework/cache/data',
     '/tmp/storage/framework/sessions',
     '/tmp/storage/framework/views',
     '/tmp/storage/logs',
     '/tmp/storage/app/public',
+    '/tmp/cache',
 ];
 foreach ($dirs as $dir) {
     if (!is_dir($dir)) {
         mkdir($dir, 0755, true);
+    }
+}
+
+// Copy bootstrap cache files to /tmp/cache so Laravel can use & update them
+$srcCache = __DIR__ . '/../bootstrap/cache';
+foreach (['packages.php', 'services.php'] as $file) {
+    $src = $srcCache . '/' . $file;
+    $dst = '/tmp/cache/' . $file;
+    if (file_exists($src) && !file_exists($dst)) {
+        copy($src, $dst);
     }
 }
 
@@ -20,16 +31,23 @@ if (!file_exists($dbPath)) {
     touch($dbPath);
 }
 
-// Set environment variables for Vercel runtime
-putenv("DB_DATABASE={$dbPath}");
-$_ENV['DB_DATABASE'] = $dbPath;
-$_SERVER['DB_DATABASE'] = $dbPath;
+// Set all required env vars for Vercel runtime
+$envVars = [
+    'DB_DATABASE'         => $dbPath,
+    'APP_SERVICES_CACHE'  => '/tmp/cache/services.php',
+    'APP_PACKAGES_CACHE'  => '/tmp/cache/packages.php',
+    'APP_CONFIG_CACHE'    => '/tmp/cache/config.php',
+    'APP_ROUTES_CACHE'    => '/tmp/cache/routes-v7.php',
+    'APP_EVENTS_CACHE'    => '/tmp/cache/events.php',
+    'VIEW_COMPILED_PATH'  => '/tmp/storage/framework/views',
+];
+foreach ($envVars as $key => $value) {
+    putenv("{$key}={$value}");
+    $_ENV[$key]    = $value;
+    $_SERVER[$key] = $value;
+}
 
-putenv('VIEW_COMPILED_PATH=/tmp/storage/framework/views');
-$_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
-$_SERVER['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
-
-// Auto-run migrations on cold start (flag stored in /tmp)
+// Auto-run migrations on cold start
 $migrationFlag = '/tmp/.db_migrated';
 if (!file_exists($migrationFlag) || filesize($dbPath) < 100) {
     $artisan = __DIR__ . '/../artisan';
