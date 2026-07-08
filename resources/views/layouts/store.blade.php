@@ -10,8 +10,8 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
-    <title>@yield('title', 'Digital Download Store')</title>
-    <meta name="description" content="@yield('description', 'Store13 – Your digital marketplace for Games, Music, Videos, and Apps. Browse, buy and download instantly.')">
+<title>@yield('title', __('Digital Download Store'))</title>
+    <meta name="description" content="@yield('description', __('Store13 – Your digital marketplace for Games, Music, Videos, and Apps. Browse, buy and download instantly.'))">
     
     <!-- Instrument Sans Font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,7 +64,7 @@
             <!-- Search Bar (Desktop only) -->
             <div class="flex-1 max-w-md relative hidden md:block">
                 <div class="relative">
-                    <label for="global-search" class="sr-only">Search products</label>
+                    <label for="global-search" class="sr-only">{{ __('Search products') }}</label>
                     <input 
                         type="text" 
                         id="global-search" 
@@ -72,7 +72,7 @@
                         aria-autocomplete="list"
                         aria-controls="search-results"
                         aria-expanded="false"
-                        placeholder="Search games, music, videos, apps..." 
+                        placeholder="{{ __('Search games, music, videos, apps...') }}" 
                         class="w-full px-4 py-1.5 rounded-lg text-sm bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] focus:ring-1 focus:ring-[#f53003] transition-all"
                         autocomplete="off"
                     >
@@ -90,24 +90,22 @@
             <!-- Right Actions -->
             <div class="flex items-center gap-1 sm:gap-3">
                 <!-- Mobile Search Toggle -->
-                <button id="mobile-search-toggle" aria-label="Open search" aria-expanded="false" aria-controls="mobile-search-bar" class="md:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] transition-colors rounded-lg">
+<button id="mobile-search-toggle" aria-label="{{ __('Open search') }}" aria-expanded="false" aria-controls="mobile-search-bar" class="md:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] transition-colors rounded-lg">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    <span class="sr-only">Search</span>
+                    <span class="sr-only">{{ __('Search') }}</span>
                 </button>
 
-                <!-- Cart Icon -->
-                <a href="{{ route('cart.index') }}" aria-label="View shopping cart" class="relative p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg">
+                <a href="{{ route('cart.index') }}" aria-label="{{ __('View shopping cart') }}" class="relative p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                     </svg>
-                    <span id="cart-badge" aria-label="items in cart" class="absolute -top-0.5 -right-0.5 bg-[#f53003] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
-                    <span class="sr-only">Shopping Cart</span>
+                    <span id="cart-badge" aria-label="{{ __('items in cart') }}" class="absolute -top-0.5 -right-0.5 bg-[#f53003] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </a>
 
-                <!-- Settings Icon -->
-                <button id="settings-toggle" class="p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg cursor-pointer" aria-label="Settings">
+                <button id="settings-toggle" class="p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg cursor-pointer" aria-label="{{ __('Settings') }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -119,24 +117,24 @@
                     @auth
 @if (Auth::user()->isAdmin())
                             <a href="{{ route('admin.dashboard') }}" class="text-xs px-2.5 py-1.5 border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white rounded-lg transition-all">
-                                Admin
+{{ __('Admin') }}
                             </a>
                         @endif
                         <a href="{{ route('dashboard') }}" class="text-xs px-2.5 py-1.5 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-zinc-300 hover:border-[#f53003] hover:text-[#f53003] rounded-lg transition-all">
-                            My Library
+                            {{ __('My Library') }}
                         </a>
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf
                             <button type="submit" class="text-xs px-2.5 py-1.5 text-gray-500 hover:text-red-500 transition-colors cursor-pointer">
-                                Log out
+                                {{ __('Log out') }}
                             </button>
                         </form>
                     @else
                         <a href="{{ route('login') }}" class="text-xs px-2.5 py-1.5 text-gray-700 dark:text-zinc-300 hover:text-[#f53003] transition-colors">
-                            Log in
+                            {{ __('Log in') }}
                         </a>
                         <a href="{{ route('register') }}" class="text-xs px-2.5 py-1.5 border border-[#19140035] dark:border-[#3E3E3A] hover:border-[#f53003] dark:hover:border-[#FF4433] rounded-lg transition-all">
-                            Register
+                            {{ __('Register') }}
                         </a>
                     @endauth
                 </div>
@@ -157,7 +155,7 @@
         <!-- Mobile Search Bar (Expandable) -->
         <div id="mobile-search-bar" class="hidden md:hidden border-t border-gray-100 dark:border-zinc-800 px-4 py-2.5 bg-white dark:bg-[#161615]">
             <div class="relative">
-                <label for="mobile-search-input" class="sr-only">Search products</label>
+                <label for="mobile-search-input" class="sr-only">{{ __('Search products') }}</label>
                 <input 
                     type="text" 
                     id="mobile-search-input" 
@@ -165,7 +163,7 @@
                     aria-autocomplete="list"
                     aria-controls="mobile-search-results"
                     aria-expanded="false"
-                    placeholder="Search products..." 
+                    placeholder="{{ __('Search products...') }}" 
                     class="w-full px-4 py-2 rounded-lg text-sm bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] focus:ring-1 focus:ring-[#f53003] transition-all"
                     autocomplete="off"
                 >
@@ -186,28 +184,28 @@
 @if (Auth::user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/20 transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-                            Admin Portal
+{{ __('Admin Portal') }}
                         </a>
                     @endif
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                        My Library
+                        {{ __('My Library') }}
                     </a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                            Log out
+                            {{ __('Log out') }}
                         </button>
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                        Log in
+                        {{ __('Log in') }}
                     </a>
                     <a href="{{ route('register') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-[#f53003] hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                        Create Account
+                        {{ __('Create Account') }}
                     </a>
                 @endauth
             </div>
@@ -234,11 +232,11 @@
     <!-- Footer -->
     <footer class="w-full border-t border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#161615] py-8 text-center text-xs text-gray-400 dark:text-zinc-500">
         <div class="max-w-[1200px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span>© {{ date('Y') }} Store13. All rights reserved. Built with Laravel 13.</span>
+<span>{{ __('© :year Store13. All rights reserved. Built with Laravel 13.', ['year' => date('Y')]) }}</span>
             <div class="flex gap-4">
-                <a href="#" class="hover:text-[#f53003] transition-colors">Terms</a>
-                <a href="#" class="hover:text-[#f53003] transition-colors">Privacy</a>
-                <a href="#" class="hover:text-[#f53003] transition-colors">Contact</a>
+                <a href="#" class="hover:text-[#f53003] transition-colors">{{ __('Terms') }}</a>
+                <a href="#" class="hover:text-[#f53003] transition-colors">{{ __('Privacy') }}</a>
+                <a href="#" class="hover:text-[#f53003] transition-colors">{{ __('Contact') }}</a>
             </div>
         </div>
     </footer>
