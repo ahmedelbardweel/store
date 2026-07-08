@@ -11,7 +11,7 @@
         <div class="lg:col-span-2 space-y-6">
 
             <!-- 🧪 Test Card Helper Box -->
-            <div class="bg-amber-50 dark:bg-amber-950/20 border border-amber-300 dark:border-amber-700 rounded-[20px] p-4 sm:p-5 space-y-3">
+            <div class="bg-amber-50 dark:bg-amber-950/20 border border-amber-300 dark:border-amber-700 rounded-xl p-4 sm:p-5 space-y-3">
                 <div class="flex items-center justify-between gap-3">
                     <div class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@
                     <button 
                         type="button" 
                         id="fill-test-card"
-                        class="text-[10px] px-2.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-[15px] font-bold transition-all cursor-pointer shrink-0 flex items-center gap-1"
+                        class="text-[10px] px-2.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-bold transition-all cursor-pointer shrink-0 flex items-center gap-1"
                     >
                         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
@@ -31,26 +31,26 @@
                     </button>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-[11px]">
-                    <div class="bg-white dark:bg-zinc-900 rounded-[18px] p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
                         <span class="block text-gray-400 mb-0.5">Name</span>
                         <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono text-[11px]">Ahmed Test</span>
                     </div>
-                    <div class="bg-white dark:bg-zinc-900 rounded-[18px] p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
                         <span class="block text-gray-400 mb-0.5">Card No.</span>
                         <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono text-[11px] break-all">4242-4242-4242-4242</span>
                     </div>
-                    <div class="bg-white dark:bg-zinc-900 rounded-[18px] p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
                         <span class="block text-gray-400 mb-0.5">Expiry</span>
                         <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono">12/28</span>
                     </div>
-                    <div class="bg-white dark:bg-zinc-900 rounded-[18px] p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg p-2.5 sm:p-3 border border-amber-200 dark:border-amber-800">
                         <span class="block text-gray-400 mb-0.5">CVV</span>
                         <span class="font-bold text-gray-800 dark:text-zinc-200 font-mono">123</span>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-6">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-6 custom-shadow space-y-6">
                 <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">Payment Information</h2>
                 
                 <form id="checkout-form" action="{{ route('checkout.process') }}" method="POST" class="space-y-4">
@@ -65,7 +65,7 @@
                             name="card_name" 
                             required 
                             placeholder="Ahmed Test" 
-                            class="w-full px-3 py-2 rounded-[18px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
@@ -79,7 +79,7 @@
                             required 
                             maxlength="19"
                             placeholder="4242-4242-4242-4242" 
-                            class="w-full px-3 py-2 rounded-[18px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
+                            class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
                         >
                     </div>
 
@@ -94,7 +94,7 @@
                                 required 
                                 maxlength="5"
                                 placeholder="12/28" 
-                                class="w-full px-3 py-2 rounded-[18px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
+                                class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
                             >
                         </div>
                         <div>
@@ -106,14 +106,14 @@
                                 required 
                                 maxlength="4"
                                 placeholder="123" 
-                                class="w-full px-3 py-2 rounded-[18px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
+                                class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 text-sm focus:outline-none focus:border-[#f53003] transition-colors"
                             >
                         </div>
                     </div>
 
                     <!-- Order button -->
                     <div class="pt-4">
-                        <button type="submit" class="w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-[18px] font-bold transition-all cursor-pointer">
+                        <button type="submit" class="w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-lg font-bold transition-all cursor-pointer">
                             Pay &amp; Complete Order
                         </button>
                     </div>
@@ -124,7 +124,7 @@
         <!-- Right 1 Column: Summary details -->
         <div class="space-y-6">
             
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-6">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-6 custom-shadow space-y-6">
                 <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">Your Order Items</h2>
                 
                 <div class="divide-y divide-gray-100 dark:divide-zinc-800/80 text-xs">
@@ -228,6 +228,7 @@
     }
 </script>
 @endsection
+
 
 
 

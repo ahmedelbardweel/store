@@ -1079,7 +1079,7 @@
                     border-radius: 3.40282e38px
                 }
 
-                .rounded-[15px] {
+                .rounded-lg {
                     border-radius: var(--radius-md)
                 }
 
@@ -2402,5 +2402,6 @@
 </body>
 
 </html>
+
 
 

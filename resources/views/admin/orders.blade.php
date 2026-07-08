@@ -9,16 +9,16 @@
     </div>
 
     <!-- Filter Bar -->
-    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-4 custom-shadow mb-6 flex flex-wrap gap-4 items-center justify-between">
+    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-4 custom-shadow mb-6 flex flex-wrap gap-4 items-center justify-between">
         <form action="" method="GET" class="flex flex-wrap gap-3 items-center w-full sm:w-auto">
-            <select name="status" class="px-3 py-1.5 rounded-[12px] border border-gray-200 dark:border-zinc-800 text-xs bg-gray-50 dark:bg-zinc-900">
+            <select name="status" class="px-3 py-1.5 rounded-md border border-gray-200 dark:border-zinc-800 text-xs bg-gray-50 dark:bg-zinc-900">
                 <option value="">All Statuses</option>
                 <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Completed</option>
                 <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Pending</option>
                 <option value="failed" {{ request('status') === 'failed' ? 'selected' : '' }}>Failed</option>
                 <option value="refunded" {{ request('status') === 'refunded' ? 'selected' : '' }}>Refunded</option>
             </select>
-            <button type="submit" class="text-xs px-3 py-1.5 bg-[#111] dark:bg-white text-white dark:text-black rounded-[12px] font-medium hover:opacity-90 cursor-pointer">
+            <button type="submit" class="text-xs px-3 py-1.5 bg-[#111] dark:bg-white text-white dark:text-black rounded-md font-medium hover:opacity-90 cursor-pointer">
                 Filter
             </button>
         </form>
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Orders Table -->
-    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] overflow-hidden custom-shadow">
+    <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden custom-shadow">
         @if ($orders->isEmpty())
             <p class="text-xs text-gray-400 text-center py-12">No orders processed yet.</p>
         @else
@@ -76,13 +76,13 @@
                             </td>
                             <!-- Status -->
                             <td class="p-4 text-center">
-                                <span class="px-1.5 py-0.5 rounded-[12px] text-[8px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600">
+                                <span class="px-1.5 py-0.5 rounded-md text-[8px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600">
                                     {{ $order->payment_status }}
                                 </span>
                             </td>
                             <!-- Downloads -->
                             <td class="p-4 text-center font-bold">
-                                <span class="px-1.5 py-0.5 rounded-[12px] text-[8px] font-bold uppercase tracking-wider {{ $order->downloads_revoked ? 'bg-red-50 text-red-600' : 'bg-emerald-50 text-emerald-600' }}">
+                                <span class="px-1.5 py-0.5 rounded-md text-[8px] font-bold uppercase tracking-wider {{ $order->downloads_revoked ? 'bg-red-50 text-red-600' : 'bg-emerald-50 text-emerald-600' }}">
                                     {{ $order->downloads_revoked ? 'Revoked' : 'Active' }}
                                 </span>
                             </td>
@@ -93,7 +93,7 @@
                                     @method('PATCH')
                                     <button 
                                         type="submit" 
-                                        class="text-xs px-2.5 py-1 rounded-[12px] border {{ $order->downloads_revoked ? 'border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white' : 'border-red-500 text-red-500 hover:bg-red-500 hover:text-white' }} font-semibold transition-all cursor-pointer"
+                                        class="text-xs px-2.5 py-1 rounded-md border {{ $order->downloads_revoked ? 'border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white' : 'border-red-500 text-red-500 hover:bg-red-500 hover:text-white' }} font-semibold transition-all cursor-pointer"
                                     >
                                         {{ $order->downloads_revoked ? 'Restore Access' : 'Revoke Access' }}
                                     </button>
@@ -106,6 +106,7 @@
         @endif
     </div>
 @endsection
+
 
 
 

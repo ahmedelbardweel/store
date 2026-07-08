@@ -16,9 +16,9 @@
         <div class="lg:col-span-2 space-y-6">
             
             <!-- Main Title & Meta -->
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-4">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-6 custom-shadow space-y-4">
                 <div class="flex flex-wrap items-center justify-between gap-4">
-                    <span class="px-2 py-0.5 rounded-[12px] text-[10px] font-semibold uppercase tracking-wider bg-red-50 dark:bg-red-950/20 text-[#f53003] dark:text-[#FF4433]">
+                    <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-red-50 dark:bg-red-950/20 text-[#f53003] dark:text-[#FF4433]">
                         {{ $product->category->name }}
                     </span>
                     <span class="text-xs text-gray-400">Released: {{ $product->created_at->format('M d, Y') }}</span>
@@ -32,12 +32,12 @@
             </div>
 
             <!-- Media Preview Showcase (Dynamic based on Category) -->
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] overflow-hidden custom-shadow">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden custom-shadow">
                 
                 @if ($product->category->slug === 'music')
                     <!-- Audio Player Interface -->
                     <div class="p-8 bg-zinc-50 dark:bg-zinc-900/50 flex flex-col items-center justify-center space-y-4 border-b border-gray-150 dark:border-zinc-800">
-                        <div class="p-4 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-[20px] text-[#f53003] dark:text-[#FF4433] shadow-sm">
+                        <div class="p-4 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl text-[#f53003] dark:text-[#FF4433] shadow-sm">
                             @include('components.category-icon', ['slug' => 'music', 'class' => 'w-12 h-12'])
                         </div>
                         <div class="text-center">
@@ -105,7 +105,7 @@
 
             <!-- Technical Specifications / Track List Metadata -->
             @if ($product->metadata)
-                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-4">
+                <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-6 custom-shadow space-y-4">
                     <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">Specifications / Details</h2>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -120,7 +120,7 @@
             @endif
 
             <!-- Reviews and Comments -->
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-6">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-6 custom-shadow space-y-6">
                 <h2 class="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">Reviews ({{ $product->reviews->count() }})</h2>
                 
                 @if ($product->reviews->isEmpty())
@@ -149,7 +149,7 @@
                                 @csrf
                                 <div>
                                     <label class="block text-[11px] text-gray-400 mb-1">Rating</label>
-                                    <select name="rating" class="text-xs p-2 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 w-24">
+                                    <select name="rating" class="text-xs p-2 rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 w-24">
                                         <option value="5">★★★★★ (5)</option>
                                         <option value="4">★★★★☆ (4)</option>
                                         <option value="3">★★★☆☆ (3)</option>
@@ -159,9 +159,9 @@
                                 </div>
                                 <div>
                                     <label class="block text-[11px] text-gray-400 mb-1">Comment</label>
-                                    <textarea name="comment" rows="3" class="text-xs p-2 rounded-[12px] border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 w-full" placeholder="Share your experience downloading this product..."></textarea>
+                                    <textarea name="comment" rows="3" class="text-xs p-2 rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 w-full" placeholder="Share your experience downloading this product..."></textarea>
                                 </div>
-                                <button type="submit" class="text-xs px-4 py-2 bg-[#f53003] text-white rounded-[15px] font-semibold cursor-pointer">
+                                <button type="submit" class="text-xs px-4 py-2 bg-[#f53003] text-white rounded-lg font-semibold cursor-pointer">
                                     Submit Review
                                 </button>
                             </form>
@@ -176,7 +176,7 @@
         <!-- Desktop: shown inline | Mobile: hidden here, shown as sticky bottom bar -->
         <div class="hidden lg:block space-y-6">
             
-            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-[20px] p-6 custom-shadow space-y-6 sticky top-20">
+            <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-6 custom-shadow space-y-6 sticky top-20">
                 
                 <div class="space-y-1">
                     <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Price</span>
@@ -214,12 +214,12 @@
                                 <input type="hidden" name="card_cvv" value="000">
                                 <!-- Pass item ID via custom session payload -->
                                 @php session()->put('cart', [$product->id => 1]); @endphp
-                                <button type="submit" class="w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-[18px] font-bold transition-all cursor-pointer">
+                                <button type="submit" class="w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-lg font-bold transition-all cursor-pointer">
                                     Download Free
                                 </button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="block w-full text-center text-xs py-3 bg-[#111111] dark:bg-white text-white dark:text-black rounded-[18px] font-bold hover:opacity-90 transition-all">
+                            <a href="{{ route('login') }}" class="block w-full text-center text-xs py-3 bg-[#111111] dark:bg-white text-white dark:text-black rounded-lg font-bold hover:opacity-90 transition-all">
                                 Log in to Download
                             </a>
                         @endauth
@@ -227,7 +227,7 @@
                         <!-- Paid product checkouts -->
                         <form action="{{ route('cart.add', $product) }}" method="POST">
                             @csrf
-                            <button type="submit" class="w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-[18px] font-bold transition-all cursor-pointer">
+                            <button type="submit" class="w-full text-center text-xs py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-lg font-bold transition-all cursor-pointer">
                                 Buy Now
                             </button>
                         </form>
@@ -263,19 +263,19 @@
                             <input type="hidden" name="card_expiry" value="00/00">
                             <input type="hidden" name="card_cvv" value="000">
                             @php session()->put('cart', [$product->id => 1]); @endphp
-                            <button type="submit" class="w-full text-center text-sm py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-[20px] font-bold transition-all cursor-pointer">
+                            <button type="submit" class="w-full text-center text-sm py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-xl font-bold transition-all cursor-pointer">
                                 Download Free
                             </button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="block w-full text-center text-sm py-3 bg-[#111111] dark:bg-white text-white dark:text-black rounded-[20px] font-bold hover:opacity-90 transition-all">
+                        <a href="{{ route('login') }}" class="block w-full text-center text-sm py-3 bg-[#111111] dark:bg-white text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-all">
                             Log in to Download
                         </a>
                     @endauth
                 @else
                     <form action="{{ route('cart.add', $product) }}" method="POST">
                         @csrf
-                        <button type="submit" class="w-full text-center text-sm py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-[20px] font-bold transition-all cursor-pointer">
+                        <button type="submit" class="w-full text-center text-sm py-3 bg-[#f53003] hover:bg-red-700 text-white rounded-xl font-bold transition-all cursor-pointer">
                             Buy Now
                         </button>
                     </form>
@@ -284,6 +284,7 @@
         </div>
     </div>
 @endsection
+
 
 
 
