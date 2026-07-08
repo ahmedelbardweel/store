@@ -21,7 +21,19 @@
         html{font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif}
     </style>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @php
+            $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+            $css = $manifest['resources/css/app.css']['css'][0] ?? null;
+            $js = $manifest['resources/js/app.js']['file'] ?? null;
+        @endphp
+        @if ($css)
+            <link rel="preload" href="{{ asset('build/' . $css) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="{{ asset('build/' . $css) }}"></noscript>
+        @endif
+        @if ($js)
+            <link rel="modulepreload" href="{{ asset('build/' . $js) }}">
+            <script type="module" src="{{ asset('build/' . $js) }}" defer></script>
+        @endif
     @else
         <link rel="preload" as="style" href="https://unpkg.com/@tailwindcss/browser@4" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://unpkg.com/@tailwindcss/browser@4"></noscript>
