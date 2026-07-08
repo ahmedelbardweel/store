@@ -51,7 +51,7 @@
                     @foreach ($products as $p)
                         <tr class="hover:bg-gray-50/50 dark:hover:bg-zinc-900/30">
                             <td class="p-4 flex items-center gap-3">
-                                <img src="{{ $p->thumbnail_url }}" class="w-10 h-10 object-cover rounded-lg border border-gray-100 dark:border-zinc-800">
+                                <img src="{{ $p->thumbnail_url }}" width="40" height="40" class="w-10 h-10 object-cover rounded-lg border border-gray-100 dark:border-zinc-800">
                                 <div class="min-w-0">
                                     <span class="font-bold text-gray-800 dark:text-zinc-200 block truncate max-w-[200px]">{{ $p->name }}</span>
                                     <span class="text-[10px] text-gray-400">{{ $p->file_size ?? __('N/A') }}</span>

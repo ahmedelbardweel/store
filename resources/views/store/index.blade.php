@@ -115,7 +115,7 @@
                     <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl overflow-hidden custom-shadow group hover:border-[#f53003]/50 transition-all flex flex-col h-full">
                         <a href="{{ route('products.show', $product->slug) }}"
                             class="relative block aspect-[4/3] bg-gray-50 dark:bg-zinc-900 overflow-hidden border-b border-gray-100 dark:border-zinc-800">
-                            <img src="{{ $product->thumbnail_url }}" alt="{{ $product->name }}"
+                            <img src="{{ $product->thumbnail_url }}" alt="{{ $product->name }}" width="400" height="300"
                                 class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" loading="lazy">
                             <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-white/95 dark:bg-zinc-900/95 shadow-sm text-gray-800 dark:text-zinc-200">
                                 {{ __($product->category->name) }}

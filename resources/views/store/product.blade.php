@@ -70,7 +70,7 @@
                     </div>
                 @else
                     <div class="aspect-video bg-gray-50 dark:bg-zinc-900 border-b border-gray-150 dark:border-zinc-800 flex items-center justify-center">
-                        <img src="{{ $product->thumbnail_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                        <img src="{{ $product->thumbnail_url }}" alt="{{ $product->name }}" width="800" height="450" fetchpriority="high" class="w-full h-full object-cover">
                     </div>
                 @endif
 

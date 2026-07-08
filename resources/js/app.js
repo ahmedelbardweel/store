@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         } else {
                             results.innerHTML = data.map(item => `
                                 <a href="${item.url}" class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-zinc-900 border-b border-gray-100 dark:border-zinc-800/50 last:border-none transition-colors">
-                                    <img src="${item.thumbnail}" class="w-9 h-9 object-cover rounded-lg border border-gray-100 dark:border-zinc-800 shrink-0" />
+                                    <img src="${item.thumbnail}" width="36" height="36" class="w-9 h-9 object-cover rounded-lg border border-gray-100 dark:border-zinc-800 shrink-0" />
                                     <div class="flex-1 min-w-0">
                                         <div class="text-xs font-semibold truncate text-gray-800 dark:text-zinc-200">${item.name}</div>
                                         <div class="text-[10px] text-gray-400">${item.category}</div>

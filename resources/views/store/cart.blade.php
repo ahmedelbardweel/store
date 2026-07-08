@@ -22,7 +22,7 @@
                 @foreach ($items as $item)
                     @php $p = $item['product']; @endphp
                     <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-3 sm:p-4 custom-shadow flex items-center gap-3 sm:gap-4">
-                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800 shrink-0">
+                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" width="64" height="64" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800 shrink-0">
                         <div class="flex-1 min-w-0">
                             <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400">{{ __($p->category->name) }}</span>
                             <h3 class="font-bold text-sm text-gray-800 dark:text-zinc-200 truncate">

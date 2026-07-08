@@ -35,7 +35,7 @@
                     @endphp
                     <div class="bg-white dark:bg-[#161615] border border-gray-200 dark:border-zinc-800 rounded-xl p-5 custom-shadow flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div class="flex items-center gap-4 min-w-0">
-                            <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-16 h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800">
+                            <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" width="64" height="64" class="w-16 h-16 object-cover rounded-lg border border-gray-100 dark:border-zinc-800">
                             <div class="min-w-0">
                                 <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400">{{ __($p->category->name) }}</span>
                                 <h3 class="font-bold text-sm text-gray-800 dark:text-zinc-200 truncate">{{ $p->name }}</h3>
