@@ -13,15 +13,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"></noscript>
+<style>
+        html{font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;line-height:1.5}
+        body{margin:0;background:#fdfd;color:#1b1b18}
+        .dark body,.dark .bg-\\[\\#161615\\],.dark header{background:#161615}
+        .dark .text-\\[\\#EDEDEC\\]{color:#ededec}
+        a{color:inherit;text-decoration:none}
+        img{max-width:100%;height:auto;display:block}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}
+        .flex{display:flex}.hidden{display:none}.inline-flex{display:inline-flex}
+        .items-center{align-items:center}.justify-between{justify-content:space-between}
+        .flex-1{flex:1}.shrink-0{flex-shrink:0}.relative{position:relative}.sticky{position:sticky}.top-0{top:0}.z-40{z-index:40}
+        .w-full{width:100%}.w-5{width:20px}.w-7{width:28px}.h-5{height:20px}.h-7{height:28px}.h-14{height:56px}
+        .max-w-\\[1200px\\]{max-width:1200px}.mx-auto{margin:0 auto}.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:12px}
+        .px-4{padding:0 16px}.border-b{border-bottom:1px solid #e5e7eb}
+        .rounded-lg{border-radius:8px}.bg-white{background:#fff}.bg-\\[\\#f53003\\]{background:#f53003}
+        .text-white,.text-\\[\\#f53003\\]{color:#f53003}.text-gray-600{color:#4b5563}.text-xs{font-size:12px}.text-sm{font-size:14px}.text-base{font-size:16px}
+        .font-bold{font-weight:700}.font-black{font-weight:900}.font-semibold{font-weight:600}.tracking-tight{letter-spacing:-.025em}
+        .transition-colors{transition:color .15s,border-color .15s,background-color .15s}
+        .md\\:block{display:block}.md\\:hidden{display:none}.sm\\:flex{display:flex}.sm\\:hidden{display:none}
+        .sm\\:h-16{height:64px}.sm\\:w-8{width:32px}.sm\\:h-8{height:32px}.sm\\:text-lg{font-size:18px}.sm\\:gap-3{gap:12px}.sm\\:px-6{padding:0 24px}
+        .lg\\:px-8{padding:0 32px}.border-gray-200{border-color:#e5e7eb}.border-t{border-top:1px solid #e5e7eb}
+        .hover\\:text-\\[\\#f53003\\]:hover{color:#f53003}
+        .custom-shadow{box-shadow:inset 0 0 0 1px rgba(26,26,0,.16)}
+        .laravel-border{border-color:rgba(25,20,0,.15)}
+        .dark\\:bg-\\[\\#0a0a0a\\]{background:#0a0a0a}
+        .dark\\:border-zinc-800{border-color:#3f3f46}
+        .dark\\:text-zinc-400{color:#a1a1aa}.dark\\:text-zinc-300{color:#d4d4d8}
+        .dark .custom-shadow{box-shadow:inset 0 0 0 1px rgba(255,250,237,.18)}
+        .dark .laravel-border{border-color:rgba(255,255,255,.15)}
+    </style>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
         <link rel="preload" as="style" href="https://unpkg.com/@tailwindcss/browser@4" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://unpkg.com/@tailwindcss/browser@4"></noscript>
+        <script defer src="{{ asset('resources/js/app.js') }}"></script>
     @endif
-    <style>
-        .custom-shadow{box-shadow:inset 0 0 0 1px rgba(26,26,0,.16)}.dark .custom-shadow{box-shadow:inset 0 0 0 1px rgba(255,250,237,.18)}.laravel-border{border-color:rgba(25,20,0,.15)}.dark .laravel-border{border-color:rgba(255,255,255,.15)}html{font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif}
-    </style>
 </head>
 <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] h-full flex flex-col antialiased">
 
@@ -400,10 +428,7 @@
         </div>
     </div>
 
-@if (!file_exists(public_path('build/manifest.json')) && !file_exists(public_path('hot')))
-        <script defer src="{{ asset('resources/js/app.js') }}"></script>
-    @endif
-    @yield('scripts')
+@yield('scripts')
 </body>
 </html>
 
