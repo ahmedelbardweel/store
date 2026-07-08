@@ -10,10 +10,7 @@
     <meta name="description" content="@yield('description', __('Store13 – Your digital marketplace for Games, Music, Videos, and Apps. Browse, buy and download instantly.'))">
     <meta name="locale" content="{{ app()->getLocale() }}">
     @stack('head')
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"></noscript>
+
 <style>
         .custom-shadow{box-shadow:inset 0px 0px 0px 1px rgba(26,26,0,.16)}
         .dark .custom-shadow{box-shadow:inset 0px 0px 0px 1px rgba(255,250,237,.18)}
@@ -28,25 +25,30 @@
             $css = $cssEntry['file'] ?? ($cssEntry['css'][0] ?? null);
             $js = $manifest['resources/js/app.js']['file'] ?? null;
             $fontsCss = null;
+            $preloadFonts = [];
             foreach ($manifest as $key => $entry) {
-                if (is_array($entry) && str_contains((string) $key, 'fonts') && str_ends_with($entry['file'] ?? '', '.css')) {
-                    $fontsCss = $entry['file'];
-                    break;
+                if (is_array($entry) && isset($entry['file'])) {
+                    if (str_contains((string) $key, 'fonts') && str_ends_with($entry['file'], '.css')) {
+                        $fontsCss = $entry['file'];
+                    } elseif (str_ends_with($entry['file'], '.woff2')) {
+                        $preloadFonts[] = $entry['file'];
+                    }
                 }
             }
         @endphp
         @if ($fontsCss)
-            <link rel="preload" href="{{ asset('build/' . $fontsCss) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-            <noscript><link rel="stylesheet" href="{{ asset('build/' . $fontsCss) }}"></noscript>
+            <link rel="stylesheet" href="{{ asset('build/' . $fontsCss) }}">
         @endif
         @if ($css)
-            <link rel="preload" href="{{ asset('build/' . $css) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-            <noscript><link rel="stylesheet" href="{{ asset('build/' . $css) }}"></noscript>
+            <link rel="stylesheet" href="{{ asset('build/' . $css) }}">
         @endif
         @if ($js)
             <link rel="modulepreload" href="{{ asset('build/' . $js) }}">
             <script type="module" src="{{ asset('build/' . $js) }}" defer></script>
         @endif
+        @foreach ($preloadFonts as $fontFile)
+            <link rel="preload" href="{{ asset('build/' . $fontFile) }}" as="font" type="font/woff2" crossorigin>
+        @endforeach
     @else
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     @endif
