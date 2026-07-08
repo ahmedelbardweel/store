@@ -41,7 +41,7 @@
 
     <!-- Header / Navigation -->
     <header class="w-full border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#161615] sticky top-0 z-40">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
             
             <!-- Logo -->
             <a href="{{ route('home') }}" class="flex items-center gap-2 group shrink-0">
@@ -186,7 +186,7 @@
     </header>
 
     <!-- Main Content Grid -->
-    <main class="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Toast / Alerts -->
         @if (session('success'))
             <div class="mb-6 p-4 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-400 rounded-lg text-sm flex items-center justify-between">
@@ -204,7 +204,7 @@
 
     <!-- Footer -->
     <footer class="w-full border-t border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#161615] py-8 text-center text-xs text-gray-400 dark:text-zinc-500">
-        <div class="max-w-[1400px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="max-w-[1200px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <span>© {{ date('Y') }} Store13. All rights reserved. Built with Laravel 13.</span>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-[#f53003] transition-colors">Terms</a>
@@ -318,6 +318,7 @@
     @yield('scripts')
 </body>
 </html>
+
 
 
 

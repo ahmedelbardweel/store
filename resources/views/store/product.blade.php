@@ -245,7 +245,7 @@
 
     <!-- Mobile Sticky Checkout Bar (shown only on mobile) -->
     <div class="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white dark:bg-[#161615] border-t border-gray-200 dark:border-zinc-800 px-4 py-3 safe-area-bottom">
-        <div class="flex items-center gap-3 max-w-[1400px] mx-auto">
+        <div class="flex items-center gap-3 max-w-[1200px] mx-auto">
             <!-- Price -->
             <div class="flex-shrink-0">
                 <div class="text-[10px] text-gray-400 uppercase tracking-wider">Price</div>
@@ -284,6 +284,7 @@
         </div>
     </div>
 @endsection
+
 
 
 
