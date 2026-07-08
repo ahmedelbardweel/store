@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,6 @@ Route::prefix('admin')
     });
 
 // ─── Settings & Customizations ──────────────────────────────────────────────
-use App\Http\Controllers\SettingsController;
 Route::post('/settings/language', [SettingsController::class, 'setLanguage'])->name('settings.language');
 Route::middleware('auth')->group(function () {
     Route::post('/settings/password', [SettingsController::class, 'changePassword'])->name('settings.password');
