@@ -47,12 +47,12 @@ foreach ($envVars as $key => $value) {
     $_SERVER[$key] = $value;
 }
 
-// Auto-run migrations on cold start
+// Auto-run migrations & seed on cold start
 $migrationFlag = '/tmp/.db_migrated';
 if (!file_exists($migrationFlag) || filesize($dbPath) < 100) {
     $artisan = __DIR__ . '/../artisan';
     $php = PHP_BINARY ?: 'php';
-    exec("{$php} {$artisan} migrate --force 2>&1", $output, $code);
+    exec("{$php} {$artisan} migrate --force --seed 2>&1", $output, $code);
     if ($code === 0) {
         file_put_contents($migrationFlag, date('Y-m-d H:i:s'));
     }

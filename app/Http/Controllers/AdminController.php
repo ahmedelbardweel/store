@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     private function checkAdmin()
     {
-        if (!Auth::check() || Auth::user()->email !== 'admin@store.com') {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
             abort(403, 'Admin access required.');
         }
     }

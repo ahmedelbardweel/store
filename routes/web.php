@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 // ─── Admin Routes ───────────────────────────────────────────────────────────
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware('auth')
+    ->middleware(['auth', 'admin'])
     ->group(function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/products', [AdminController::class, 'products'])->name('products');
@@ -60,6 +60,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings/switch-account/{id}', [SettingsController::class, 'switchAccount'])->name('settings.switch');
     Route::post('/settings/remove-account/{id}', [SettingsController::class, 'removeSavedAccount'])->name('settings.remove');
 });
+
+// ─── Auto-create admin on first visit ──────────────────────────────────────
+Route::get('/setup', function () {
+    $admin = \App\Models\User::where('email', 'admin@store.com')->first();
+    if (!$admin) {
+        $admin = \App\Models\User::create([
+            'name'     => 'Admin',
+            'email'    => 'admin@store.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'is_admin'  => true,
+        ]);
+        return response()->json(['message' => 'Admin account created!', 'email' => 'admin@store.com', 'password' => 'password']);
+    }
+    return response()->json(['message' => 'Admin already exists.', 'email' => 'admin@store.com']);
+})->name('setup');
 
 // ─── Laravel Auth Routes ────────────────────────────────────────────────────
 require __DIR__ . '/auth.php';
