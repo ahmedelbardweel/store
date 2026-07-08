@@ -26,6 +26,17 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
+            
+            // Save account in cookie for switcher
+            $user = Auth::user();
+            $savedAccounts = json_decode($request->cookie('saved_accounts', '{}'), true);
+            $savedAccounts[$user->id] = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+            ];
+            cookie()->queue('saved_accounts', json_encode($savedAccounts), 60 * 24 * 30);
+
             return redirect()->intended(route('home'))->with('success', 'Logged in successfully!');
         }
 
@@ -57,6 +68,15 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        // Save account in cookie for switcher
+        $savedAccounts = json_decode($request->cookie('saved_accounts', '{}'), true);
+        $savedAccounts[$user->id] = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+        ];
+        cookie()->queue('saved_accounts', json_encode($savedAccounts), 60 * 24 * 30);
 
         return redirect()->route('home')->with('success', 'Account created and logged in!');
     }

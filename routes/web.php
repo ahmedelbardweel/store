@@ -51,5 +51,15 @@ Route::prefix('admin')
         Route::patch('/orders/{order}/revoke', [AdminController::class, 'revokeDownload'])->name('orders.revoke');
     });
 
+// ─── Settings & Customizations ──────────────────────────────────────────────
+use App\Http\Controllers\SettingsController;
+Route::post('/settings/language', [SettingsController::class, 'setLanguage'])->name('settings.language');
+Route::middleware('auth')->group(function () {
+    Route::post('/settings/password', [SettingsController::class, 'changePassword'])->name('settings.password');
+    Route::post('/settings/delete-account', [SettingsController::class, 'deleteAccount'])->name('settings.delete');
+    Route::get('/settings/switch-account/{id}', [SettingsController::class, 'switchAccount'])->name('settings.switch');
+    Route::post('/settings/remove-account/{id}', [SettingsController::class, 'removeSavedAccount'])->name('settings.remove');
+});
+
 // ─── Laravel Auth Routes ────────────────────────────────────────────────────
 require __DIR__ . '/auth.php';

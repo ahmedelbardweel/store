@@ -1,8 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" class="h-full">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <title>@yield('title', 'Digital Download Store')</title>
     
     <!-- Instrument Sans Font from Google Fonts -->
@@ -90,6 +97,14 @@
                     </svg>
                     <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-[#f53003] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
                 </a>
+
+                <!-- Settings Icon -->
+                <button id="settings-toggle" class="p-2 text-gray-600 dark:text-zinc-400 hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors rounded-lg cursor-pointer" aria-label="Settings">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </button>
 
                 <!-- Desktop Auth Actions -->
                 <div class="hidden sm:flex items-center gap-2">
@@ -216,6 +231,253 @@
 
     <!-- Scripts -->
     <script>
+    <!-- Settings Slide-Over Drawer -->
+    <div id="settings-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="settings-drawer" class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'left-0 border-r' : 'right-0 border-l' }} w-full sm:w-[400px] bg-white dark:bg-[#161615] border-gray-200 dark:border-zinc-800 z-50 transform {{ app()->getLocale() === 'ar' ? '-translate-x-full' : 'translate-x-full' }} transition-transform duration-300 flex flex-col shadow-2xl">
+        
+        <!-- Drawer Header -->
+        <div class="p-4 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between">
+            <h2 class="text-base font-bold flex items-center gap-2">
+                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {{ app()->getLocale() === 'ar' ? 'الإعدادات والخيارات' : 'Settings & Options' }}
+            </h2>
+            <button id="settings-close" class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-500 cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Drawer Content -->
+        <div class="flex-1 overflow-y-auto p-5 space-y-6">
+            
+            <!-- 1. Language switcher -->
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">
+                    {{ app()->getLocale() === 'ar' ? 'لغة الموقع' : 'Site Language' }}
+                </label>
+                <form action="{{ route('settings.language') }}" method="POST" id="lang-form" class="flex gap-2">
+                    @csrf
+                    <button type="submit" name="locale" value="en" class="flex-1 py-2 px-3 rounded-lg text-xs font-medium border {{ app()->getLocale() === 'en' ? 'border-[#f53003] text-[#f53003] bg-red-50/50 dark:bg-red-950/10' : 'border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-900' }} transition-all cursor-pointer">
+                        English
+                    </button>
+                    <button type="submit" name="locale" value="ar" class="flex-1 py-2 px-3 rounded-lg text-xs font-medium border {{ app()->getLocale() === 'ar' ? 'border-[#f53003] text-[#f53003] bg-red-50/50 dark:bg-red-950/10' : 'border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-900' }} transition-all cursor-pointer">
+                        العربية
+                    </button>
+                </form>
+            </div>
+
+            <!-- 2. Dark/Light Mode -->
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">
+                    {{ app()->getLocale() === 'ar' ? 'مظهر الموقع' : 'Theme Mode' }}
+                </label>
+                <div class="flex gap-2">
+                    <button id="theme-light" class="flex-1 py-2 px-3 rounded-lg text-xs font-medium border border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-900 flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+                        {{ app()->getLocale() === 'ar' ? 'فاتح' : 'Light' }}
+                    </button>
+                    <button id="theme-dark" class="flex-1 py-2 px-3 rounded-lg text-xs font-medium border border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-900 flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        {{ app()->getLocale() === 'ar' ? 'داكن' : 'Dark' }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Account Switcher (Profile Manager) -->
+            <div class="space-y-3">
+                <label class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider block">
+                    {{ app()->getLocale() === 'ar' ? 'التحكم وتبديل الحسابات' : 'Account Manager & Switcher' }}
+                </label>
+                
+                @auth
+                    <!-- Active Account -->
+                    <div class="p-3 rounded-xl border border-[#f53003]/30 bg-red-50/20 dark:bg-red-950/5 flex items-center justify-between">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <div class="w-8 h-8 rounded-full bg-[#f53003]/10 text-[#f53003] flex items-center justify-center font-bold text-sm shrink-0">
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold truncate text-gray-800 dark:text-zinc-200">{{ Auth::user()->name }}</p>
+                                <p class="text-[10px] text-gray-400 truncate">{{ Auth::user()->email }}</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded-full font-semibold border border-emerald-500/20">
+                            {{ app()->getLocale() === 'ar' ? 'نشط' : 'Active' }}
+                        </span>
+                    </div>
+                @else
+                    <div class="p-3 rounded-xl border border-dashed border-gray-200 dark:border-zinc-800 text-center text-xs text-gray-500">
+                        {{ app()->getLocale() === 'ar' ? 'لم تقم بتسجيل الدخول بعد.' : 'You are not logged in.' }}
+                    </div>
+                @endauth
+
+                <!-- Saved Accounts Switcher List -->
+                @php
+                    $savedAccounts = json_decode(request()->cookie('saved_accounts', '{}'), true);
+                    $otherAccounts = array_filter($savedAccounts, function($acc) {
+                        return !Auth::check() || $acc['id'] != Auth::id();
+                    });
+                @endphp
+
+                @if(!empty($otherAccounts))
+                    <div class="space-y-2">
+                        <p class="text-[10px] font-bold text-gray-400 dark:text-zinc-500 uppercase tracking-wide">
+                            {{ app()->getLocale() === 'ar' ? 'الحسابات المحفوظة (اضغط للتبديل)' : 'Saved Accounts (Click to Switch)' }}
+                        </p>
+                        @foreach($otherAccounts as $acc)
+                            <div class="group flex items-center justify-between p-2.5 rounded-lg border border-gray-200 dark:border-zinc-800 hover:border-[#f53003]/50 hover:bg-gray-50/50 dark:hover:bg-zinc-900/50 transition-all">
+                                <a href="{{ route('settings.switch', $acc['id']) }}" class="flex items-center gap-2 min-w-0 flex-1 cursor-pointer">
+                                    <div class="w-7 h-7 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 flex items-center justify-center font-bold text-xs shrink-0">
+                                        {{ strtoupper(substr($acc['name'], 0, 1)) }}
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-xs font-semibold truncate text-gray-700 dark:text-zinc-300 group-hover:text-[#f53003] transition-colors">{{ $acc['name'] }}</p>
+                                        <p class="text-[9px] text-gray-400 truncate">{{ $acc['email'] }}</p>
+                                    </div>
+                                </a>
+                                <form action="{{ route('settings.remove', $acc['id']) }}" method="POST" class="inline">
+                                    @csrf
+                                    <button type="submit" class="p-1 text-gray-400 hover:text-red-500 rounded transition-colors cursor-pointer" title="{{ app()->getLocale() === 'ar' ? 'إزالة من القائمة' : 'Remove' }}">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                    </button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+
+                <!-- Switch Actions -->
+                <div class="flex gap-2 pt-1">
+                    <a href="{{ route('login') }}" class="flex-1 py-2 px-3 bg-gray-100 dark:bg-zinc-900 hover:bg-gray-200 dark:hover:bg-zinc-800 text-gray-700 dark:text-zinc-300 rounded-lg text-xs font-semibold text-center transition-colors">
+                        {{ app()->getLocale() === 'ar' ? 'تسجيل بحساب آخر +' : 'Add Account +' }}
+                    </a>
+                </div>
+            </div>
+
+            @auth
+                <!-- 4. Change Password -->
+                <div class="border-t border-gray-200 dark:border-zinc-800 pt-4 space-y-3">
+                    <label class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider block">
+                        {{ app()->getLocale() === 'ar' ? 'تغيير كلمة السر' : 'Change Password' }}
+                    </label>
+                    <form action="{{ route('settings.password') }}" method="POST" class="space-y-3">
+                        @csrf
+                        <div>
+                            <input type="password" name="current_password" required placeholder="{{ app()->getLocale() === 'ar' ? 'كلمة السر الحالية' : 'Current Password' }}" class="w-full px-3 py-2 rounded-lg text-xs bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] transition-all">
+                        </div>
+                        <div>
+                            <input type="password" name="password" required placeholder="{{ app()->getLocale() === 'ar' ? 'كلمة السر الجديدة' : 'New Password' }}" class="w-full px-3 py-2 rounded-lg text-xs bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] transition-all">
+                        </div>
+                        <div>
+                            <input type="password" name="password_confirmation" required placeholder="{{ app()->getLocale() === 'ar' ? 'تأكيد كلمة السر الجديدة' : 'Confirm New Password' }}" class="w-full px-3 py-2 rounded-lg text-xs bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 focus:outline-none focus:border-[#f53003] transition-all">
+                        </div>
+                        <button type="submit" class="w-full py-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg text-xs font-bold hover:bg-black dark:hover:bg-zinc-150 transition-colors cursor-pointer">
+                            {{ app()->getLocale() === 'ar' ? 'تحديث كلمة السر' : 'Update Password' }}
+                        </button>
+                    </form>
+                </div>
+
+                <!-- 5. Danger Zone (Delete Account & Logout) -->
+                <div class="border-t border-gray-200 dark:border-zinc-800 pt-4 space-y-3">
+                    <label class="text-xs font-semibold text-red-500 uppercase tracking-wider block">
+                        {{ app()->getLocale() === 'ar' ? 'إجراءات الحساب' : 'Account Actions' }}
+                    </label>
+                    <div class="flex gap-2">
+                        <!-- Logout Form -->
+                        <form action="{{ route('logout') }}" method="POST" class="flex-1">
+                            @csrf
+                            <button type="submit" class="w-full py-2 bg-gray-100 dark:bg-zinc-900 text-gray-700 dark:text-zinc-300 rounded-lg text-xs font-semibold hover:bg-gray-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                {{ app()->getLocale() === 'ar' ? 'تسجيل خروج' : 'Log Out' }}
+                            </button>
+                        </form>
+
+                        <!-- Delete Account Button -->
+                        <form action="{{ route('settings.delete') }}" method="POST" class="flex-1" id="delete-account-form">
+                            @csrf
+                            <button type="button" id="delete-account-btn" class="w-full py-2 bg-red-600 text-white rounded-lg text-xs font-semibold hover:bg-red-700 transition-colors cursor-pointer">
+                                {{ app()->getLocale() === 'ar' ? 'حذف الحساب' : 'Delete Account' }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endauth
+
+        </div>
+    </div>
+
+    <!-- Scripts and Logic -->
+    <script>
+        // ── Settings Drawer Toggle ──
+        const settingsToggle = document.getElementById('settings-toggle');
+        const settingsClose = document.getElementById('settings-close');
+        const settingsDrawer = document.getElementById('settings-drawer');
+        const settingsBackdrop = document.getElementById('settings-backdrop');
+        const isRtl = "{{ app()->getLocale() }}" === 'ar';
+
+        function openSettings() {
+            settingsBackdrop.classList.remove('pointer-events-none', 'opacity-0');
+            settingsBackdrop.classList.add('opacity-100');
+            settingsDrawer.classList.remove(isRtl ? '-translate-x-full' : 'translate-x-full');
+            settingsDrawer.classList.add('translate-x-0');
+        }
+
+        function closeSettings() {
+            settingsBackdrop.classList.remove('opacity-100');
+            settingsBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            settingsDrawer.classList.remove('translate-x-0');
+            settingsDrawer.classList.add(isRtl ? '-translate-x-full' : 'translate-x-full');
+        }
+
+        if (settingsToggle) settingsToggle.addEventListener('click', openSettings);
+        if (settingsClose) settingsClose.addEventListener('click', closeSettings);
+        if (settingsBackdrop) settingsBackdrop.addEventListener('click', closeSettings);
+
+        // ── Theme Switcher UI & Action ──
+        const themeLightBtn = document.getElementById('theme-light');
+        const themeDarkBtn = document.getElementById('theme-dark');
+
+        function updateThemeButtons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                themeDarkBtn.classList.add('border-[#f53003]', 'text-[#f53003]', 'bg-red-50/50', 'dark:bg-red-950/10');
+                themeLightBtn.classList.remove('border-[#f53003]', 'text-[#f53003]', 'bg-red-50/50', 'dark:bg-red-950/10');
+            } else {
+                themeLightBtn.classList.add('border-[#f53003]', 'text-[#f53003]', 'bg-red-50/50', 'dark:bg-red-950/10');
+                themeDarkBtn.classList.remove('border-[#f53003]', 'text-[#f53003]', 'bg-red-50/50', 'dark:bg-red-950/10');
+            }
+        }
+
+        themeLightBtn.addEventListener('click', () => {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            updateThemeButtons();
+        });
+
+        themeDarkBtn.addEventListener('click', () => {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            updateThemeButtons();
+        });
+
+        updateThemeButtons();
+
+        // ── Delete Account Confirmation ──
+        const deleteAccountBtn = document.getElementById('delete-account-btn');
+        if (deleteAccountBtn) {
+            deleteAccountBtn.addEventListener('click', function() {
+                const confirmationText = isRtl 
+                    ? "هل أنت متأكد تمامًا من رغبتك في حذف حسابك بشكل نهائي؟ لا يمكن التراجع عن هذا الإجراء!" 
+                    : "Are you absolutely sure you want to delete your account? This action cannot be undone!";
+                if (confirm(confirmationText)) {
+                    document.getElementById('delete-account-form').submit();
+                }
+            });
+        }
+
         // ── Cart Badge ──
         function updateCartBadge() {
             fetch("{{ route('cart.count') }}")
